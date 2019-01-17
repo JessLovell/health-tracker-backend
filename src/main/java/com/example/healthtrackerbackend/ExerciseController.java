@@ -1,5 +1,6 @@
 package com.example.healthtrackerbackend;
 
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,10 +17,13 @@ public class ExerciseController {
 
     //Get Mapping to return all the things in the db
     @GetMapping(value = "/exercises")
-    public Iterable<Exercise>  indexExercises(){
+    public String  indexExercises(){
 
-        //return the all the entries in the db. 
-        return exerciseRepo.findAll();
+        //get all the entries in the db
+        //turn the list into a Json
+        Gson gson = new Gson();
+
+        return gson.toJson(exerciseRepo.findAll());
     }
 
     //post mapping to add things to the database
