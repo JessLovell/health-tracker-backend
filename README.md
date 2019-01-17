@@ -1,5 +1,5 @@
 # health-tracker-backend
-Server for Health Tracker Application
+Server for [Health Tracker Application](https://github.com/JessLovell/health-tracker) 
 
 ## API Routes
 Route | Description | Request Type
@@ -9,4 +9,3 @@ Route | Description | Request Type
 
 ## Resources
 - [Gson](https://github.com/google/gson)
-
