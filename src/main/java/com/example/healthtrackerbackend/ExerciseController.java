@@ -14,13 +14,10 @@ public class ExerciseController {
 
     //Get Mapping to return all the things in the db
     @GetMapping(value = "/exercises")
-//    @ResponseBody
     public String indexExercises(){
 
-        //get all the entries in the db
-        //turn the list into a Json
+        //get all the entries in the db and json it
         Gson gson = new Gson();
-
         return gson.toJson(exerciseRepo.findAll());
     }
 
