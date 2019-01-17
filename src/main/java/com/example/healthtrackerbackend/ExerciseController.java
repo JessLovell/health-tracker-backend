@@ -15,9 +15,15 @@ public class ExerciseController {
     private ExerciseRepo exerciseRepo;
 
     //Get Mapping to return all the things in the db
+    @GetMapping(value = "/exercises")
+    public Iterable<Exercise>  indexExercises(){
+
+        //return the all the entries in the db. 
+        return exerciseRepo.findAll();
+    }
 
     //post mapping to add things to the database
-    @PostMapping(value = "/exercise/add")
+    @PostMapping(value = "/exercises/add")
     public Exercise createExercise(@RequestParam String title, @RequestParam String quantity,
                                    @RequestParam String description){
         //create new exercise
