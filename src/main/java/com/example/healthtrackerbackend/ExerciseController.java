@@ -2,14 +2,11 @@ package com.example.healthtrackerbackend;
 
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 
-@Controller
+@RestController
 public class ExerciseController {
 
     @Autowired
@@ -17,7 +14,8 @@ public class ExerciseController {
 
     //Get Mapping to return all the things in the db
     @GetMapping(value = "/exercises")
-    public String  indexExercises(){
+//    @ResponseBody
+    public String indexExercises(){
 
         //get all the entries in the db
         //turn the list into a Json
@@ -27,7 +25,7 @@ public class ExerciseController {
     }
 
     //post mapping to add things to the database
-    @PostMapping(value = "/exercises/add")
+    @PostMapping(value = "/exercises")
     public Exercise createExercise(@RequestParam String title, @RequestParam String quantity,
                                    @RequestParam String description){
         //create new exercise
