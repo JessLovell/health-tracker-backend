@@ -24,9 +24,9 @@ public class ExerciseController {
     //post mapping to add things to the database
     @PostMapping(value = "/exercises")
     public Exercise createExercise(@RequestParam String title, @RequestParam String quantity,
-                                   @RequestParam String description){
+                                   @RequestParam String description, @RequestParam String location){
         //create new exercise
-        Exercise newExercise =  new Exercise(title, quantity, description, new Date().toString());
+        Exercise newExercise =  new Exercise(title, quantity, description, new Date().toString(), location);
         return exerciseRepo.save(newExercise); // Save the entry to the database
     }
 }
