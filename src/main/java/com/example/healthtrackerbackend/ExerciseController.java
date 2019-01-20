@@ -2,11 +2,12 @@ package com.example.healthtrackerbackend;
 
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 
-@RestController
+@Controller
 public class ExerciseController {
 
     @Autowired
@@ -14,6 +15,7 @@ public class ExerciseController {
 
     //Get Mapping to return all the things in the db
     @GetMapping(value = "/exercises")
+    @ResponseBody
     public String indexExercises(){
 
         //get all the entries in the db and json it
