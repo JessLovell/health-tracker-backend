@@ -48,19 +48,4 @@ public class ExerciseControllerTest {
         ResponseEntity<String> response =  this.restTemplate.getForEntity("http://localhost:" + port + "/exercises", String.class);
         assertEquals("The response code should be 200", 200, response.getStatusCodeValue());
     }
-
-    @Test
-    public void createExercise() {
-
-        HashMap requestBody = new HashMap();
-        requestBody.put("title", "testDeliveryEvent");
-        requestBody.put("quantity", "1");
-        requestBody.put("description", "testing the post method");
-        requestBody.put("location", "Coffeeshop");
-        requestBody.put("timestamp", "1/18/19");
-
-
-        ResponseEntity<String> response =  this.restTemplate.postForEntity("http://localhost:" + port + "/exercises", requestBody.toString(), String.class);
-        assertEquals("The response code should be 200", 200, response.getStatusCodeValue());
-    }
 }
