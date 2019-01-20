@@ -1,50 +1,66 @@
 package com.example.healthtrackerbackend;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.web.servlet.MockMvc;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.HashMap;
 
-import static org.junit.Assert.*;
-import static org.mockito.BDDMockito.given;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertEquals;
 
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(ExerciseController.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ExerciseControllerTest {
 
 //    https://www.blazemeter.com/blog/spring-boot-rest-api-unit-testing-with-junit
 //    https://www.baeldung.com/spring-boot-testing
 
-    @Autowired
-    private MockMvc mvc;
+    @LocalServerPort
+    private int port;
 
-    @MockBean
-    private ExerciseRepo exerciseRepo;
+    @Autowired
+    ExerciseController exerciseController;
+
+    @Autowired
+    private TestRestTemplate restTemplate;
 
     @Test
-    public void indexExercises() {
+    public void contextLoads() throws Exception {
 
-        Exercise exercise = new Exercise("Testing", "12", "This is a test.", "1/17/2019", "Seattle");
-        List<Exercise> allExercises = Arrays.asList(exercise);
+        assertThat(exerciseController).isNotNull();
+    }
 
-        given(exerciseRepo.).willReturn(allExercises);
+    @Test
+    public void indexExercise() {
 
-        mvc.perform()
-
+        ResponseEntity<String> response =  this.restTemplate.getForEntity("http://localhost:" + port + "/exercises", String.class);
+        assertEquals("The response code should be 200", 200, response.getStatusCodeValue());
     }
 
     @Test
     public void createExercise() {
+
+        HashMap requestBody = new HashMap();
+        requestBody.put("title", "testDeliveryEvent");
+        requestBody.put("quantity", "1");
+        requestBody.put("description", "testing the post method");
+        requestBody.put("location", "Coffeeshop");
+        requestBody.put("timestamp", "1/18/19");
+
+
+        ResponseEntity<String> response =  this.restTemplate.postForEntity("http://localhost:" + port + "/exercises", requestBody.toString(), String.class);
+        assertEquals("The response code should be 200", 200, response.getStatusCodeValue());
     }
 }
