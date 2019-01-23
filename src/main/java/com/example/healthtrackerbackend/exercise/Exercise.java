@@ -1,4 +1,4 @@
-package com.example.healthtrackerbackend;
+package com.example.healthtrackerbackend.exercise;
 
 import com.example.healthtrackerbackend.healthUser.HealthUser;
 

@@ -1,6 +1,6 @@
 package com.example.healthtrackerbackend.healthUser;
 
-import com.example.healthtrackerbackend.Exercise;
+import com.example.healthtrackerbackend.exercise.Exercise;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
