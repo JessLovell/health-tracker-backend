@@ -5,10 +5,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
@@ -20,12 +18,6 @@ public class HealthUserController {
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
-
-//    @PostMapping("/login")
-//    public void login(@RequestParam String username, @RequestParam String password){
-//
-//        return
-//    }
 
     @PostMapping("/signup")
     @ResponseBody
@@ -51,6 +43,4 @@ public class HealthUserController {
     public String returnDashboard(){
         return "Logged in !!! ";
     }
-
-
 }
