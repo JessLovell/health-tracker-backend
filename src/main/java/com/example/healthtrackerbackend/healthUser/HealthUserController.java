@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 
-@RestController
+@Controller
 public class HealthUserController {
 
     @Autowired
@@ -28,6 +28,7 @@ public class HealthUserController {
 //    }
 
     @PostMapping("/signup")
+    @ResponseBody
     public String signup(@RequestParam String username, @RequestParam String password,
                        @RequestParam String firstName, @RequestParam String lastName,
                        @RequestParam String dateOfBirth){
@@ -46,6 +47,7 @@ public class HealthUserController {
     }
 
     @GetMapping("/my-dashboard")
+    @ResponseBody
     public String returnDashboard(){
         return "Logged in !!! ";
     }
