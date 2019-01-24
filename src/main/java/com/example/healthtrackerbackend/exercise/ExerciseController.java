@@ -1,4 +1,4 @@
-package com.example.healthtrackerbackend;
+package com.example.healthtrackerbackend.exercise;
 
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
